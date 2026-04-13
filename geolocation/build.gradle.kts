@@ -98,7 +98,7 @@ kotlin {
 
 
 group = "io.github.mamon-aburawi" // this group name in maven central repository
-version = "1.0.0" // version of library
+version = "1.0.1" // version of library
 
 mavenPublishing {
 
@@ -114,7 +114,7 @@ mavenPublishing {
     coordinates(
         groupId = group.toString(),
         version = version.toString(),
-        artifactId = "geoloction-kmp"
+        artifactId = "geolocation-kmp"
     )
 
     pom {
