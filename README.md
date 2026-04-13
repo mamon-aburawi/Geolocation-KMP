@@ -23,7 +23,7 @@ Add the dependency to your `commonMain` source set in your `build.gradle.kts` fi
 kotlin {
     sourceSets {
         commonMain.dependencies {
-            implementation("io.github.mamon-aburawi:geolocation-kmp:{last_version}") 
+            implementation("io.github.mamon-aburawi-geolocation-kmp:{last_location}") 
         }
     }
 }
