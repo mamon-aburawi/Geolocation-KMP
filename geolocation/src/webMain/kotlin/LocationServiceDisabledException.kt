@@ -1,0 +1,1 @@
+internal class LocationServiceDisabledException(message: String) : Exception(message)
