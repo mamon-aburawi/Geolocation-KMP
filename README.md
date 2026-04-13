@@ -73,77 +73,34 @@ The library provides a simple, unified `GeoLocation` interface. **Note:** OpenSt
 For Compose, you can create a `rememberGeoLocation` state helper so your class survives recompositions.
 
 ```kotlin
-import io.mamon.geolocation.*
-import androidx.compose.runtime.*
-import kotlinx.coroutines.launch
 
 
-@Composable
-fun LocationScreen() {
-    val scope = rememberCoroutineScope()
-    
-    val geoLocation = rememberGeoLocation(
-        agentName = "your-contact-email@example.com", 
-        languageCode = "en"
-    )
+val geoLocation = rememberGeoLocation(agentName = "your@email.com", languageCode = "en")
 
-    Button(onClick = {
-        scope.launch {
-            try {
-                val location = geoLocation.findLocation()
-                println("📍 Coordinates: ${location?.latitude}, ${location?.longitude}")
-                println("🏠 Address: ${location?.fullAddress}")
-                
-            } catch (e: GeoLocationException) {
-                // Handle domain-specific errors (e.g., show permission dialogs)
-                println("Error: ${e.message}")
-            }
-        }
-    }) {
-        Text("Get My Location")
-    }
+scope.launch {
+    val location = geoLocation.findLocation()
+    println("Address: ${location?.fullAddress}")
 }
+
 ```
 
-### 2. Outside Compose (ViewModels / iOS / Native)
-If you are working inside an Android `ViewModel`, a native iOS controller, or standard Kotlin code, you can initialize and use the library directly.
+### 2. Outside Compose (ViewModels)
+
 
 ```kotlin
-import io.mamon.geolocation.*
-import kotlinx.coroutines.launch
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewModelScope
 
-class LocationViewModel : ViewModel() {
+private val geoLocation = GeoLocation(
+    email = "your-contact-email@example.com",
+    languageCode = "en" // Try "ar" for Arabic or "es" for Spanish!
+ )
 
-    // 1. Initialize directly
-    private val geoLocation = GeoLocation(
-        email = "your-contact-email@example.com",
-        languageCode = "en" // Try "ar" for Arabic or "es" for Spanish!
-    )
 
-    fun fetchUserLocation() {
-        // 2. Launch in your CoroutineScope
-        viewModelScope.launch {
-            try {
-                // 3. Fetch location
-                val location = geoLocation.findLocation()
-                
-                if (location != null) {
-                    println("📍 Coordinates: ${location.latitude}, ${location.longitude}")
-                    println("🏠 Address: ${location.fullAddress}")
-                }
-                
-            } catch (e: GeoLocationException) {
-                when (e) {
-                    is GeoLocationException.PermissionMissing -> println("Missing Permissions! Please grant access.")
-                    is GeoLocationException.ServiceDisabled -> println("GPS is off! Please enable location services.")
-                    else -> println("Error: ${e.message}")
-                }
-            }
-        }
-    }
+scope.launch {
+    val location = geoLocation.findLocation()
+    println("Address: ${location?.fullAddress}")
 }
+
+
 ```
 
 ---
