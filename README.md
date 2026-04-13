@@ -63,6 +63,9 @@ Apple strictly requires apps to explain *why* they need the user's location. You
 <string>We need your location to show your current address.</string>
 ```
 
+### 🖥️ Desktop
+Since desktop environments typically lack native GPS hardware and location services, the location on Desktop targets is retrieved using the device's IP address. No explicit OS permissions are required to be configured.
+
 ---
 
 ## 💻 Usage
