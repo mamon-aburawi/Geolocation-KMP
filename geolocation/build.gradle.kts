@@ -1,6 +1,7 @@
 import com.android.build.api.dsl.androidLibrary
 import com.vanniktech.maven.publish.JavadocJar
 import com.vanniktech.maven.publish.KotlinMultiplatform
+import com.vanniktech.maven.publish.SourcesJar
 import org.jetbrains.kotlin.gradle.ExperimentalWasmDsl
 import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 
@@ -17,18 +18,13 @@ plugins {
 kotlin {
     jvm()
 
+    @Suppress("UnstableApiUsage")
     androidLibrary {
         namespace = "io.geolocation.kmp"
         compileSdk = libs.versions.android.compileSdk.get().toInt()
         minSdk = libs.versions.android.minSdk.get().toInt()
 
         withJava()
-        withHostTestBuilder {}.configure {}
-        withDeviceTestBuilder {
-            sourceSetTreeName = "test"
-        }
-
-
 
         compilations.configureEach {
             compilerOptions.configure {
@@ -92,7 +88,7 @@ kotlin {
         }
 
         webMain.dependencies {
-            implementation(libs.geolocation)
+            implementation(libs.compass.geolocation)
         }
 
 
@@ -108,7 +104,7 @@ mavenPublishing {
     configure(
         KotlinMultiplatform(
             javadocJar = JavadocJar.Empty(),
-            sourcesJar = true,
+            sourcesJar = SourcesJar.Sources(),
             androidVariantsToPublish = listOf("release", "debug"),
         )
     )
@@ -122,9 +118,9 @@ mavenPublishing {
 
     pom {
         name = "GeoLocation KMP"
-        description = "Lightweight Kotlin Multiplatform printer library supporting Android and Desktop targets, designed for easy integration with thermal and document printers."
+        description = "A modern, clean, and coroutine-based Kotlin Multiplatform (KMP) library for fetching precise GPS coordinates and resolving them into human-readable street addresses."
         inceptionYear = "2026"
-        url = "https://github.com/mamon-aburawi/Geolocation-Kmp"
+        url = "https://github.com/mamon-aburawi/Geolocation-KMP"
         licenses {
             license {
                 name = "MIT License"
@@ -138,7 +134,7 @@ mavenPublishing {
             }
         }
         scm {
-            url = "https://github.com/mamon-aburawi/Geolocation-Kmp"
+            url = "https://github.com/mamon-aburawi/Geolocation-KMP"
         }
     }
 
