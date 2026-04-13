@@ -69,7 +69,7 @@ Apple strictly requires apps to explain *why* they need the user's location. You
 
 The library provides a simple, unified `GeoLocation` interface. **Note:** OpenStreetMap policy strictly requires you to provide an email or agent name to identify your app during geocoding requests.
 
-### 1. In Jetpack Compose (Android / Desktop / Web)
+### 1. In Jetpack Compose (Android / Desktop / Web/ iOS)
 For Compose, you can create a `rememberGeoLocation` state helper so your class survives recompositions.
 
 ```kotlin
@@ -111,3 +111,10 @@ This library uses the free, public OpenStreetMap (Nominatim) server for reverse 
 
 1. **Email Required:** You must pass a valid `email` (or app identifier) to the `GeoLocation` class. This is used in the `User-Agent` header. Using a random or blank string will result in a permanent IP ban from OpenStreetMap.
 2. **Rate Limits:** The API is strictly limited to **1 request per second**. This library implements an internal 2-second throttle to protect your app from throwing HTTP 429 Rate Limit errors if the user spams the location button.
+
+---
+
+## ⭐ Support
+
+If you find this repo useful, please support me by leaving a ⭐!
+```
