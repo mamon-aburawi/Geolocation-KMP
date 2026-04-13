@@ -124,7 +124,7 @@ mavenPublishing {
         name = "GeoLocation KMP"
         description = "Lightweight Kotlin Multiplatform printer library supporting Android and Desktop targets, designed for easy integration with thermal and document printers."
         inceptionYear = "2026"
-        url = ""
+        url = "https://github.com/mamon-aburawi/Geolocation-Kmp"
         licenses {
             license {
                 name = "MIT License"
@@ -138,7 +138,7 @@ mavenPublishing {
             }
         }
         scm {
-            url = ""
+            url = "https://github.com/mamon-aburawi/Geolocation-Kmp"
         }
     }
 
